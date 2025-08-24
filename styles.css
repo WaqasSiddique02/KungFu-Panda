@@ -1,0 +1,98 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  
+}
+
+#hero {
+  background-color: black;
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem;
+}
+
+.hero-text {
+  color: white;
+  max-width: 500px;
+}
+
+.hero-img {
+  max-width: 600px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.hero-img img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  animation-duration: 3s;
+  animation-name: slide-in;
+}
+
+.hero-text {
+  font-family: "Exo 2", sans-serif;
+}
+
+.hero-text h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: goldenrod;
+}
+
+.hero-text p {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+  color: lightgray;
+}
+
+.hero-text button {
+  padding: 1.2rem 1.5rem;
+  border: none;
+  border-radius: 5px;
+  background-color: red;
+  color: lightgray;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-family: "Exo 2", sans-serif;
+  font-size: larger;
+  animation: fade-in 3s ease-in forwards;
+}
+
+.hero-text button:hover {
+  background-color: darkgoldenrod;
+}
+
+
+@keyframes slide-in {
+  from {
+    translate: 150vw 0;
+    scale: 200% 1;
+  }
+
+  to {
+    translate: 0 0;
+    scale: 100% 1;
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    display: none;
+  }
+
+  100% {
+    opacity: 1;
+    display: block;
+  }
+}
