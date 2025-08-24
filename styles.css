@@ -6,6 +6,44 @@
   font-family: "Exo 2", sans-serif;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+.lantern-glow {
+  position: fixed;
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(
+    circle,
+    rgba(218, 165, 32, 0.3) 0%,
+    rgba(218, 165, 32, 0.1) 50%,
+    transparent 100%
+  );
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: -1;
+  animation: float-lantern 8s infinite ease-in-out;
+}
+
+.lantern-glow:nth-child(1) {
+  top: 20%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.lantern-glow:nth-child(2) {
+  top: 60%;
+  right: 10%;
+  animation-delay: 2s;
+}
+
+.lantern-glow:nth-child(3) {
+  top: 80%;
+  left: 30%;
+  animation-delay: 4s;
+}
+
 #hero {
   background-color: black;
   background-size: cover;
@@ -16,11 +54,14 @@
   align-items: center;
   padding: 2rem;
   margin-bottom: 4%;
+  overflow: hidden;
 }
 
 .hero-text {
   color: white;
   max-width: 500px;
+  opacity: 0;
+  animation: hero-text-enter 2s ease-out 0.5s forwards;
 }
 
 .hero-img {
@@ -29,23 +70,24 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  opacity: 0;
+  animation: hero-img-enter 2s ease-out 1s forwards;
 }
 
 .hero-img img {
   width: 100%;
   height: 37rem;
   object-fit: cover;
-  animation: fade-in 3s ease-in forwards;
-}
-
-.hero-text {
-  font-family: "Exo 2", sans-serif;
 }
 
 .hero-text h1 {
   font-size: 2.5rem;
   margin-bottom: 1rem;
   color: goldenrod;
+  transform: translateY(50px);
+  opacity: 0;
+  animation: fade-up-scale 1.5s ease-out 1s forwards;
+  text-shadow: 0 0 20px goldenrod, 0 0 40px orange;
 }
 
 .hero-text p {
@@ -53,6 +95,9 @@
   margin-bottom: 1.5rem;
   line-height: 1.5;
   color: lightgray;
+  transform: translateY(30px);
+  opacity: 0;
+  animation: fade-up 1.2s ease-out 1.5s forwards;
 }
 
 .hero-text button {
@@ -61,17 +106,41 @@
   border-radius: 5px;
   background-color: red;
   color: lightgray;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  font-family: "Exo 2", sans-serif;
   font-size: larger;
-  animation-name: slide-in;
-  animation-duration: 2s;
+  cursor: pointer;
+  font-family: "Exo 2", sans-serif;
+  transform: translateX(-150px);
+  opacity: 0;
+  animation: slide-in-left 1s ease-out 2s forwards;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-text button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 215, 0, 0.3),
+    transparent
+  );
+  transition: left 0.8s ease;
 }
 
 .hero-text button:hover {
   background-color: darkgoldenrod;
+  box-shadow: 0 0 30px goldenrod, 0 0 50px orange;
+  transform: scale(1.05);
+}
+
+.hero-text button:hover::before {
+  left: 100%;
 }
 
 #quote {
@@ -87,6 +156,11 @@
   max-width: 800px;
   text-align: center;
   font-family: "Exo 2", sans-serif;
+  opacity: 0;
+}
+
+#quote.animate blockquote {
+  animation: quote-enter 2s ease-out forwards;
 }
 
 #quote blockquote p {
@@ -95,6 +169,7 @@
   line-height: 1.6;
   margin-bottom: 1.5rem;
   color: goldenrod;
+  animation: glow-pulse 3s ease-in-out infinite;
 }
 
 #quote blockquote footer {
@@ -102,6 +177,9 @@
   color: lightgray;
   font-weight: 500;
   letter-spacing: 1px;
+  transform: translateX(50px);
+  opacity: 0;
+  animation: fade-in-right 1.5s ease-out 1s forwards;
 }
 
 #villains {
@@ -120,14 +198,26 @@
   max-width: 1200px;
   width: 100%;
   margin: 0 auto;
+  opacity: 0;
+  transform: translateY(50px);
+}
+
+.villain.animate-left {
+  animation: slide-in-from-left 1s ease-out forwards;
+}
+
+.villain.animate-right {
+  animation: slide-in-from-right 1s ease-out forwards;
 }
 
 .villain.reverse {
   grid-template-columns: 1fr 1fr;
 }
+
 .villain.reverse .villain-img {
   order: 2;
 }
+
 .villain.reverse .villain-text {
   order: 1;
 }
@@ -137,6 +227,12 @@
   max-width: 450px;
   height: auto;
   object-fit: contain;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.villain-img img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 30px rgba(218, 165, 32, 0.3);
 }
 
 .villain-text {
@@ -148,6 +244,12 @@
   font-size: 2.5rem;
   color: goldenrod;
   margin-bottom: 1rem;
+  transition: text-shadow 0.3s ease;
+}
+
+.villain-text h2:hover {
+  text-shadow: 0 0 20px goldenrod, 0 0 40px orange;
+  animation: brief-glow 0.5s ease;
 }
 
 .villain-text p {
@@ -180,14 +282,12 @@
   height: 100vh;
   object-fit: cover;
   opacity: 0;
-  animation: fade 10s infinite;
+  transform: translateX(100px);
+  animation: slideshow-fade 4s infinite;
 }
 
 .slides img:nth-child(2) {
-  animation-delay: 4s;
-}
-.slides img:nth-child(3) {
-  animation-delay: 4s;
+  animation-delay: 2s;
 }
 
 #footer {
@@ -195,6 +295,34 @@
   color: goldenrod;
   padding: 4rem 2rem 2rem 2rem;
   font-family: "Exo 2", sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+#footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+      circle at 20% 80%,
+      rgba(218, 165, 32, 0.1) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 80% 20%,
+      rgba(255, 140, 0, 0.1) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 40% 40%,
+      rgba(218, 165, 32, 0.05) 0%,
+      transparent 50%
+    );
+  animation: ambient-glow 6s ease-in-out infinite alternate;
+  pointer-events: none;
 }
 
 .footer-container {
@@ -204,6 +332,8 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 3rem;
   text-align: left;
+  position: relative;
+  z-index: 1;
 }
 
 .footer-container h3 {
@@ -231,17 +361,14 @@
   color: goldenrod;
   text-decoration: none;
   font-size: 1.1rem;
-  transition: color 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .footer-links ul li a:hover {
   color: orange;
-  text-shadow: 0 0 8px goldenrod;
-}
-
-.footer-subscribe p {
-  color: lightgray;
-  margin-bottom: 1rem;
+  text-shadow: 0 0 15px goldenrod;
+  transform: scale(1.05);
+  display: inline-block;
 }
 
 .subscribe-form {
@@ -257,6 +384,11 @@
   flex: 1;
   outline: none;
   color: lightcyan;
+  transition: box-shadow 0.3s ease;
+}
+
+.subscribe-form input:focus {
+  box-shadow: 0 0 20px rgba(218, 165, 32, 0.5);
 }
 
 .subscribe-form button {
@@ -269,12 +401,14 @@
   cursor: pointer;
   transition: all 0.3s ease;
   font-weight: bold;
+  animation: pulse-glow 3s ease-in-out infinite;
 }
 
 .subscribe-form button:hover {
   background-color: darkgoldenrod;
   color: white;
-  box-shadow: 0 0 15px goldenrod;
+  box-shadow: 0 0 25px goldenrod;
+  transform: scale(1.05);
 }
 
 .footer-bottom {
@@ -282,6 +416,8 @@
   margin-top: 3rem;
   border-top: 1px solid goldenrod;
   padding-top: 1rem;
+  position: relative;
+  z-index: 1;
 }
 
 .footer-bottom p {
@@ -289,44 +425,219 @@
   color: gray;
 }
 
-@keyframes fade {
-  0% {
-    opacity: 0;
-  }
-  10% {
-    opacity: 1;
-  }
-  30% {
-    opacity: 1;
-  }
-  40% {
-    opacity: 0;
-  }
+/* Scroll-triggered animations */
+.scroll-animate {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.8s ease;
+}
+
+.scroll-animate.animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Keyframes */
+@keyframes float-lantern {
+  0%,
   100% {
-    opacity: 0;
+    transform: translateY(0px) scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateY(-20px) scale(1.1);
+    opacity: 0.6;
   }
 }
 
-@keyframes slide-in {
+@keyframes hero-text-enter {
   from {
-    translate: 150vw 0;
-    scale: 200% 1;
+    opacity: 0;
+    transform: translateX(-100px);
   }
-
   to {
-    translate: 0 0;
-    scale: 100% 1;
+    opacity: 1;
+    transform: translateX(0);
   }
 }
 
-@keyframes fade-in {
+@keyframes hero-img-enter {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes fade-up-scale {
+  from {
+    opacity: 0;
+    transform: translateY(50px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(-150px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes quote-enter {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes glow-pulse {
+  0%,
+  100% {
+    text-shadow: 0 0 20px goldenrod;
+  }
+  50% {
+    text-shadow: 0 0 30px goldenrod, 0 0 50px orange;
+  }
+}
+
+@keyframes fade-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-in-from-left {
+  from {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-in-from-right {
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes brief-glow {
+  0%,
+  100% {
+    text-shadow: 0 0 20px goldenrod, 0 0 40px orange;
+  }
+  50% {
+    text-shadow: 0 0 40px goldenrod, 0 0 60px orange, 0 0 80px red;
+  }
+}
+
+@keyframes slideshow-fade {
   0% {
     opacity: 0;
-    display: none;
+    transform: translateX(100px);
   }
-
-  100% {
+  12.5% {
     opacity: 1;
-    display: block;
+    transform: translateX(0);
+  }
+  37.5% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  50% {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+}
+
+@keyframes ambient-glow {
+  0% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0.6;
+    transform: scale(1.1);
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 10px rgba(218, 165, 32, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(218, 165, 32, 0.6);
+  }
+}
+
+/* Mobile touch support */
+.slides {
+  touch-action: pan-x;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .hero-text h1 {
+    font-size: 2rem;
+  }
+  .villain {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .villain.reverse {
+    grid-template-columns: 1fr;
+  }
+  .villain.reverse .villain-img {
+    order: 1;
+  }
+  .villain.reverse .villain-text {
+    order: 2;
+  }
+  .footer-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
   }
 }

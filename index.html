@@ -13,6 +13,10 @@
     <title>Kung Fu Panda</title>
   </head>
   <body>
+    <div class="lantern-glow"></div>
+    <div class="lantern-glow"></div>
+    <div class="lantern-glow"></div>
+
     <section id="hero">
       <div class="hero-text">
         <h1>Master Your Inner Kung Fu</h1>
@@ -28,7 +32,7 @@
       </div>
     </section>
 
-    <section id="quote">
+    <section id="quote" class="scroll-animate">
       <blockquote>
         <p>"The more you know yourself, the more you forgive yourself."</p>
         <footer>- Master Oogway</footer>
@@ -36,15 +40,14 @@
     </section>
 
     <section id="villains">
-      <!-- Kai (Image Left, Text Right) -->
-      <div class="villain kai">
+      <div class="villain kai scroll-animate">
         <div class="villain-img">
           <img src="public/images/kai.png" alt="Kai" />
         </div>
         <div class="villain-text">
           <h2>Kai</h2>
           <p>
-            Kai, once Master Oogway’s closest friend, fell into darkness and
+            Kai, once Master Oogway's closest friend, fell into darkness and
             became obsessed with stealing chi. After centuries trapped in the
             Spirit Realm, he has returned, wielding jade warriors and seeking
             ultimate power by draining the energy of every kung fu master.
@@ -52,8 +55,7 @@
         </div>
       </div>
 
-      <!-- Peacock (Image Right, Text Left) -->
-      <div class="villain peacock reverse">
+      <div class="villain peacock reverse scroll-animate">
         <div class="villain-img">
           <img src="public/images/peacock.png" alt="Lord Shen" />
         </div>
@@ -68,15 +70,14 @@
         </div>
       </div>
 
-      <!-- Tai Lung (Image Left, Text Right) -->
-      <div class="villain tailung">
+      <div class="villain tailung scroll-animate">
         <div class="villain-img">
           <img src="public/images/tailung-image1.jpg" alt="Tai Lung" />
         </div>
         <div class="villain-text">
           <h2>Tai Lung</h2>
           <p>
-            Tai Lung, the powerful snow leopard, was once Shifu’s most gifted
+            Tai Lung, the powerful snow leopard, was once Shifu's most gifted
             student. Consumed by pride and denied the Dragon Scroll, he turned
             into a fearsome villain. With unmatched strength and skill, he
             challenged the Valley of Peace, only to meet his fate at the paws of
@@ -86,26 +87,26 @@
       </div>
     </section>
 
-    <section id="quote">
+    <section id="quote" class="scroll-animate">
       <blockquote>
         <p>"There is no secret Ingredient."</p>
-        <footer>- Poo</footer>
+        <footer>- Po</footer>
       </blockquote>
     </section>
 
     <section id="slideshow">
       <div class="slides">
-        <img src="public/images/shifu-poo-image1.webp" alt="Slide 5" />
-        <img src="public/images/poo-image6.jpg" alt="Slide 6" />
+        <img src="public/images/shifu-poo-image1.webp" alt="Slide 1" />
+        <img src="public/images/poo-image6.jpg" alt="Slide 2" />
       </div>
     </section>
 
-    <footer id="footer">
+    <footer id="footer" class="scroll-animate">
       <div class="footer-container">
         <div class="footer-about">
           <h3>Kung Fu Panda</h3>
           <p>
-            Embark on Po’s legendary journey of courage, wisdom, and Kung Fu.
+            Embark on Po's legendary journey of courage, wisdom, and Kung Fu.
             Discover the power within and embrace your destiny.
           </p>
         </div>
@@ -121,7 +122,7 @@
         </div>
 
         <div class="footer-subscribe">
-          <h3>Join Po’s Journey</h3>
+          <h3>Join Po's Journey</h3>
           <form class="subscribe-form">
             <input type="email" placeholder="Enter your email" required />
             <button type="submit">Subscribe</button>
@@ -133,5 +134,6 @@
         <p>© 2025 Kung Fu Panda. All rights reserved.</p>
       </div>
     </footer>
+    <script src="script.js"></script>
   </body>
 </html>
